@@ -42,7 +42,7 @@
             margin-bottom: 10px;
             padding: 10px;
             font-weight: bold;
-            background-color: #877059;
+            background-color: #b8d9ae;
             color: white;
             border-radius: 4px;
             text-align: center;
@@ -109,7 +109,7 @@
             padding: 15px;
             border: none;
             border-radius: 4px;
-            background-color: #ff4c4c;
+            background-color: #b8d9ae;
             color: #fff;
             font-size: 18px;
             cursor: pointer;
@@ -410,7 +410,6 @@
         <div class="label">電話番号※必須</div>
         <input type="tel" id="phone" placeholder="電話番号を入力してください">
 
-        <div class="label">ご性別</div>
         <div class="visit-buttons">
             <button type="button" id="firstVisit" onclick="selectVisit(this)">男性</button>
             <button type="button" id="repeatVisit" onclick="selectVisit(this)">女性</button>
@@ -445,9 +444,25 @@
                 <span class="highlight-text">⭐新規トライアルメニュー⭐</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment7')" data-price="4900">全顔脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment8')" data-price="2800">1パーツ脱毛体験</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment9')" data-price="4800">メンズフェイシャル</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">VIOダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">VIOワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">VIO光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">お顔ダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">お顔ワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">お顔光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">うなじダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">うなじワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">うなじ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">脇ダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">脇ワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">脇光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">Sパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">Mパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">Lパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">全身光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">まつ育</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">髭脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">セルフホワイトニング</button>
             </div>
         </div>
 
@@ -620,24 +635,24 @@
     'Lパーツ光脱毛': 30,
     '全身光脱毛': 120,
     'まつ育': 30,
-    '新規VIOダブル脱毛': 60,
-    '新規VIOワックス脱毛': 60,
-    '新規VIO光脱毛': 60,
-    '新規お顔ダブル脱毛': 60,
-    '新規お顔ワックス脱毛': 60,
-    '新規お顔光脱毛': 60,
-    '新規うなじダブル脱毛': 60,
-    '新規うなじワックス脱毛': 60,
-    '新規うなじ光脱毛': 60,
+    '新規VIOダブル脱毛': 150,
+    '新規VIOワックス脱毛': 120,
+    '新規VIO光脱毛': 90,
+    '新規お顔ダブル脱毛': 120,
+    '新規お顔ワックス脱毛': 120,
+    '新規お顔光脱毛': 90,
+    '新規うなじダブル脱毛': 90,
+    '新規うなじワックス脱毛': 90,
+    '新規うなじ光脱毛': 90,
     '新規脇ダブル脱毛': 60,
     '新規脇ワックス脱毛': 60,
     '新規脇光脱毛': 60,
     '新規Sパーツ光脱毛': 60,
     '新規Mパーツ光脱毛': 60,
     '新規Lパーツ光脱毛': 60,
-    '新規全身光脱毛': 60,
+    '新規全身光脱毛': 150,
     '新規まつ育': 60,
-    '新規髭脱毛': 60,
+    '新規髭脱毛': 90,
     '新規セルフホワイトニング': 60
 };
 
@@ -682,8 +697,6 @@
         <p>${totalTimeText}</p>
         <hr>
         <p>${selectedDateText}</p>
-        <hr>
-        <p>${totalAmountText}</p>
         <hr>
     `;
         }
@@ -1331,7 +1344,7 @@ if (treatmentId === 'treatment1') {
             // LINEトークにメッセージを送信
             liff.sendMessages([{
                 type: 'text',
-                text: `【予約フォーム】\nお名前：${formData.name}\n電話番号：${formData.phone}\n2周年記念クーポン：${formData.secondsecondanniversaryCount}\nご来店回数：${formData.visitCount}\nメニュー：${formData.selectedSymptom},${formData.irradiationsCount},${formData.secondsecondanniversaryCount}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
+                text: `【予約フォーム】\nお名前：${formData.name}\n電話番号：${formData.phone}\nご来店回数：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
             }]).then(() => {
                 /* メッセージ送信成功時の処理 */
                 alert('当日キャンセルは無いようにお願いいたします。キャンセル料発生いたします。');
@@ -1397,7 +1410,7 @@ if (treatmentId === 'treatment1') {
 
             // 表示する時間帯のリスト（09:00から17:00までの15分刻み）
             const times = [
-                '10:00', '10:30', '11:00', '11:30',
+                '11:00', '11:30',
                 '12:00', '12:30', '13:00', '13:30',
                 '14:00', '14:30', '15:00', '15:30',
                 '16:00', '16:30', '17:00', '17:30',
