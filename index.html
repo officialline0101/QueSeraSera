@@ -60,9 +60,8 @@
         }
 
         .visit-buttons,
-        .symptoms,
-        .second-buttons,
         .menu-sections,
+        .second-buttons,
         .irradiations {
             display: flex;
             flex-wrap: wrap;
@@ -71,7 +70,6 @@
         }
 
         .visit-buttons button,
-        .symptoms button,
         .second-buttons button,
         .menu-sections button,
         .irradiations button {
@@ -87,13 +85,38 @@
         }
 
         .visit-buttons button.active,
-        .symptoms button.active,
         .second-buttons button.active,
         .menu-sections button.active,
         .irradiations button.active {
-            background-color: #444;
-            color: #fff;
+            background-color: #FFE6CE;
+            color: #000000;
         }
+        
+        .symptoms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.symptoms button {
+    flex: 1 1 calc(33.333% - 10px); /* 各ボタンが等分 */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 130px; /* 必要に応じて調整 */
+}
+
+.symptoms button.active {
+    background-color: #444;
+    color: #fff;
+}
+
 
         .date-inputs input[type="datetime-local"] {
             width: calc(100% - 22px);
@@ -246,7 +269,7 @@
         }
 
         .highlight-background {
-            background-color: #f9f9d6;
+            background-color: #FFE6CE;
             padding: 10px;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -264,6 +287,17 @@
         }
 
         .highlight-backgroundman {
+            background-color: #FFE6CE;
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            margin-top: 10px;
+            /* 上に余白を追加 */
+            text-align: center;
+            /* コンテナ内の要素を中央に配置 */
+        }
+
+        .highlight-backgroundmanaaa {
             background-color: #d4f6de;
             padding: 10px;
             border-radius: 10px;
@@ -419,6 +453,7 @@
     margin-bottom: 20px;
     line-height: 1.2;
 }
+
     </style>
 </head>
 
@@ -426,29 +461,26 @@
 <body>
     <div class="container">
         <h1 class="title">ケセラセラ<br>予約フォーム</h1>
-        <div class="label">お客様名</div>
-        <input type="text" id="name" placeholder="お名前を入力してください">
-
-        <div class="label">電話番号※必須</div>
-        <input type="tel" id="phone" placeholder="電話番号を入力してください">
-
-        <div class="visit-buttons">
-            <button type="button" id="firstVisit" onclick="selectVisit(this)">男性</button>
-            <button type="button" id="repeatVisit" onclick="selectVisit(this)">女性</button>
-        </div>
 
         <div class="label" id="menuLabel">メニューをお選びください</div>
+        <div class="visit-buttons">
+            <button type="button" id="repeatVisit" onclick="selectVisit(this)">女性</button>
+            <button type="button" id="firstVisit" onclick="selectVisit(this)">男性</button>
+        </div>
+
         <div class="menu-sections" id="menuSections">
-            <button type="button" onclick="showMenu('male')">男性メニュー</button>
-            <button type="button" onclick="showMenu('female')">女性メニュー</button>
-            <button type="button" onclick="showMenu('eyebrow')">ホワイトニング</button>
-            <button type="button" onclick="showMenu('malenew')">新規トライアルメニュー</button>
-            <button type="button" onclick="showMenu('femalenew')">新規トライアルメニュー</button>
+            <button type="button" onclick="showMenu('male')">【脱毛メニュー】</button>
+            <button type="button" onclick="showMenu('female')">【脱毛メニュー】</button>
+            <button type="button" onclick="showMenu('matuiku')">【まつ育メニュー】</button>
+            <button type="button" onclick="showMenu('eyebrow')">【ホワイトニング】</button>
+            <button type="button" onclick="showMenu('eyebrowmale')">【ホワイトニング】</button>
+            <button type="button" onclick="showMenu('malenew')">【新規トライアルメニュー】</button>
+            <button type="button" onclick="showMenu('femalenew')">【新規トライアルメニュー】</button>
         </div>
 
         <div id="male" class="menu-section">
             <div class="highlight-backgroundman">
-                <span class="highlight-text">◆男性メニュー◆</span>
+                <span class="highlight-text">脱毛</span>
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="9800">髭脱毛</button>
@@ -462,35 +494,26 @@
         </div>
 
         <div id="malenew" class="menu-section">
-            <div class="highlight-background">
-                <span class="highlight-text">⭐新規トライアルメニュー⭐</span>
+            <div class="highlight-backgroundman">
+                <span class="highlight-text">新規トライアルメニュー</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">VIOダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">VIOワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">VIO光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">お顔ダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">お顔ワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">お顔光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">うなじダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">うなじワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">うなじ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">脇ダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">脇ワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">脇光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">髭脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">VIOダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">VIOワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">VIO光脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">Sパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">Mパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">Lパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">全身光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">まつ育</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">髭脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">セルフホワイトニング</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">全身光脱毛Ⅰ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">全身光脱毛Ⅱ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">セルフホワイトニング</button>
             </div>
         </div>
 
         <div id="female" class="menu-section">
             <div class="highlight-backgroundfemale">
-                <span class="highlight-text">◆女性メニュー◆</span>
+                <span class="highlight-text">脱毛</span>
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="9800">VIOダブル脱毛</button>
@@ -509,13 +532,21 @@
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Mパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Lパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">全身光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-price="14800">まつ育</button>
+            </div>
+        </div>
+
+        <div id="matuiku" class="menu-section">
+            <div class="highlight-background">
+                <span class="highlight-text">まつ育</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this)" data-price="500">まつ育</button>
             </div>
         </div>
 
         <div id="femalenew" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">⭐新規トライアルメニュー⭐</span>
+                <span class="highlight-text">新規トライアルメニュー</span>
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">VIOダブル脱毛</button>
@@ -533,16 +564,25 @@
                 <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">Sパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">Mパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">Lパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">全身光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">まつ育</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">髭脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">全身光脱毛Ⅰ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">全身光脱毛Ⅱ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-price="5800">まつ育</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment19')" data-price="5800">セルフホワイトニング</button>
             </div>
         </div>
 
         <div id="eyebrow" class="menu-section">
             <div class="highlight-background">
-                <span class="highlight-text">◆ホワイトニング◆</span>
+                <span class="highlight-text">ホワイトニング</span>
+            </div>
+            <div class="symptoms">
+                <button type="button" onclick="selectSymptom(this)" data-price="500">セルフホワイトニング</button>
+            </div>
+        </div>
+
+        <div id="eyebrowmale" class="menu-section">
+            <div class="highlight-backgroundman">
+                <span class="highlight-text">ホワイトニング</span>
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="500">セルフホワイトニング</button>
@@ -679,6 +719,25 @@
 };
 
         let selectedMenuTime = 0;
+
+        // メニューのボタンを非表示に設定
+        const buttonsToHide = [
+            '【脱毛メニュー】',
+            '【脱毛メニュー】',
+            '【まつ育メニュー】',
+            '【ホワイトニング】',
+            '【ホワイトニング】',
+            '【男性新規トライアルメニュー】',
+            '【女性新規トライアルメニュー】'
+        ];
+
+        // ボタンを取得し非表示にする
+        const menuButtons = document.querySelectorAll('#menuSections button');
+        menuButtons.forEach((button, index) => {
+            if (index < buttonsToHide.length) {
+                button.style.display = 'none';
+            }
+        });
 
         function updateDisplayInfo() {
             const name = document.getElementById('name').value;
@@ -1258,15 +1317,13 @@ if (treatmentId === 'treatment1') {
             if (visitCount === '男性') {
                 document.querySelector('button[onclick="showMenu(\'male\')"]').style.display = 'inline-block';
                 document.querySelector('button[onclick="showMenu(\'malenew\')"]').style.display = 'inline-block';
-                document.querySelector('button[onclick="showMenu(\'eyebrow\')"]').style.display = 'inline-block';
-                document.querySelector('button[onclick="showMenu(\'whiteningmale\')"]').style.display = 'inline-block';
-                document.querySelector('button[onclick="showMenu(\'limited\')"]').style.display = 'inline-block';
+                document.querySelector('button[onclick="showMenu(\'eyebrowmale\')"]').style.display = 'inline-block';
             } else if (visitCount === '女性') {
+                document.querySelector('button[onclick="showMenu(\'matuiku\')"]').style.display = 'inline-block';
                 document.querySelector('button[onclick="showMenu(\'female\')"]').style.display = 'inline-block';
                 document.querySelector('button[onclick="showMenu(\'femalenew\')"]').style.display = 'inline-block';
                 document.querySelector('button[onclick="showMenu(\'eyebrow\')"]').style.display = 'inline-block';
-                document.querySelector('button[onclick="showMenu(\'whiteningfemale\')"]').style.display = 'inline-block';
-                document.querySelector('button[onclick="showMenu(\'limited\')"]').style.display = 'inline-block';
+
             }
 
             // 選択された訪問回数に対応する時間を取得
