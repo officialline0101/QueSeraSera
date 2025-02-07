@@ -148,7 +148,7 @@
             position: relative;
             width: 106%;
             /* 横幅を広げる */
-            margin-left: -3%;
+            margin-left: -4%;
             /* 親要素の中心にカレンダーを配置 */
         }
 
@@ -168,26 +168,47 @@
             border-collapse: collapse;
         }
 
-        .calendar th,
-        .calendar td {
-            text-align: center;
-            padding: 5px;
-            cursor: pointer;
-            vertical-align: top;
-            width: 14.28%;
-            /* 7日間が一列に収まるように設定 */
-            box-sizing: border-box;
-            border: 1px solid #000;
-            /* ここで区切り線を追加 */
-        }
+        .calendar {
+    width: 100%;
+    max-width: 600px; /* 過剰に広がらないように制限 */
+    table-layout: fixed; /* セル幅を均等にする */
+    border-collapse: collapse; /* 枠線を統一 */
+}
 
-        .calendar th {
-            background-color: #f7f7f7;
-        }
+.calendar th,
+.calendar td {
+    text-align: center;
+    padding: 12px; /* クリックしやすいサイズ感 */
+    cursor: pointer;
+    vertical-align: top;
+    width: 14.28%; /* 7日間で均等にする */
+    min-height: 80px; /* セルの高さを均等化 */
+    box-sizing: border-box;
+    border: 1px solid #444; /* 枠線を落ち着いた色に */
+    background-color: #fff; /* デフォルトの背景色 */
+}
 
-        .calendar td:hover {
-            background-color: #ddd;
-        }
+/* セルのホバー時のスタイル */
+.calendar td:hover {
+    background-color: #f0f0f0;
+}
+
+/* ヘッダーのデザイン強化 */
+.calendar th {
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* スマホ対応 */
+@media (max-width: 480px) {
+    .calendar th,
+    .calendar td {
+        padding: 8px;
+        font-size: 14px; /* スマホで見やすく */
+        min-height: 60px; /* 高さ調整 */
+    }
+}
 
         .calendar td.selected {
             background-color: #13ca5e;
