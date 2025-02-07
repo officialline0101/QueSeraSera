@@ -152,20 +152,30 @@
             /* 親要素の中心にカレンダーを配置 */
         }
 
-        .calendar {
+        .calendar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    position: relative;
+    width: 100%;
+}
+
+.calendar {
     flex: 1;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    width: 100%; /* ここを100%に */
+    width: 100%;
 }
 
 .calendar table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed; /* セルのサイズを均等にする */
+    table-layout: fixed; /* セル幅を均等にする */
 }
 
 .calendar th,
@@ -174,16 +184,29 @@
     padding: 5px;
     cursor: pointer;
     vertical-align: top;
-    width: auto; /* 自動計算 */
+    width: auto; /* 通常のセルは自動調整 */
     box-sizing: border-box;
     border: 1px solid #000;
 }
 
-        .calendar td.selected {
-            background-color: #13ca5e;
-            color: #fff;
-        }
+/* 左端のセルだけ幅を少し広げる */
+.calendar th:first-child,
+.calendar td:first-child {
+    width: 16%;
+}
 
+.calendar th {
+    background-color: #f7f7f7;
+}
+
+.calendar td:hover {
+    background-color: #ddd;
+}
+
+.calendar td.selected {
+    background-color: #13ca5e;
+    color: #fff;
+}
         .week-button-container {
             display: flex;
             justify-content: space-between;
