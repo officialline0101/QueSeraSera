@@ -153,61 +153,30 @@
         }
 
         .calendar {
-            flex: 1;
-            background-color: #fff;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            /* 横スクロールを防ぐ */
-            width: 106%;
-        }
+    flex: 1;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%; /* ここを100%に */
+}
 
-        .calendar table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .calendar {
+.calendar table {
     width: 100%;
-    max-width: 600px; /* 過剰に広がらないように制限 */
-    table-layout: fixed; /* セル幅を均等にする */
-    border-collapse: collapse; /* 枠線を統一 */
+    border-collapse: collapse;
+    table-layout: fixed; /* セルのサイズを均等にする */
 }
 
 .calendar th,
 .calendar td {
     text-align: center;
-    padding: 12px; /* クリックしやすいサイズ感 */
+    padding: 5px;
     cursor: pointer;
     vertical-align: top;
-    width: 14.28%; /* 7日間で均等にする */
-    min-height: 80px; /* セルの高さを均等化 */
+    width: auto; /* 自動計算 */
     box-sizing: border-box;
-    border: 1px solid #444; /* 枠線を落ち着いた色に */
-    background-color: #fff; /* デフォルトの背景色 */
-}
-
-/* セルのホバー時のスタイル */
-.calendar td:hover {
-    background-color: #f0f0f0;
-}
-
-/* ヘッダーのデザイン強化 */
-.calendar th {
-    background-color: #333;
-    color: #fff;
-    font-weight: bold;
-}
-
-/* スマホ対応 */
-@media (max-width: 480px) {
-    .calendar th,
-    .calendar td {
-        padding: 8px;
-        font-size: 14px; /* スマホで見やすく */
-        min-height: 60px; /* 高さ調整 */
-    }
+    border: 1px solid #000;
 }
 
         .calendar td.selected {
