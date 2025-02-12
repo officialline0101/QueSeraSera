@@ -1721,6 +1721,10 @@ if (treatmentId === 'treatment1') {
         // 祝日を赤色に変更（曜日判定ではなく完全一致判定）
         if (holidays.includes(formattedDate)) {
             th.style.color = 'red';
+        } else if (day.getDay() === 0) { // 日曜日（赤）
+            th.style.color = 'red';
+        } else if (day.getDay() === 6) { // 土曜日（青）
+            th.style.color = 'blue';
         } else {
             th.style.color = ''; // 通常色にリセット
         }
