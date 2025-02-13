@@ -740,7 +740,6 @@
         });
 
         function updateDisplayInfo() {
-            const name = document.getElementById('name').value;
             const visitCountText = visitCount ? `・<span style="color:red;"><strong>ご性別</strong></span>：${visitCount}` : '・ご性別が未選択です';
 
             // メニューが選択されていたら、各メニューを改行して表示
@@ -769,8 +768,6 @@
 
             // displayInfo要素に情報を表示
             document.getElementById('displayInfo').innerHTML = `
-        <p>・<span style="color:red;"><strong>お名前</strong></span>：${name}</p>
-        <hr>
         <p>${visitCountText}</p>
         <hr>
         <p>${selectedSymptomText}</p>
@@ -783,7 +780,6 @@
         }
 
         // 各ボタンや入力フィールドでupdateDisplayInfoを呼び出すようにする
-        document.getElementById('name').addEventListener('input', updateDisplayInfo);
         document.querySelectorAll('.visit-buttons button').forEach(button => {
             button.addEventListener('click', updateDisplayInfo);
         });
@@ -1404,8 +1400,6 @@ if (treatmentId === 'treatment1') {
 
         function submitForm() {
             const formData = {
-                name: document.getElementById('name').value,
-                phone: document.getElementById('phone').value,
                 visitCount: visitCount,
                 selectedSymptom: selectedSymptom,
                 secondsecondanniversaryCount: secondsecondanniversaryCount,
@@ -1415,7 +1409,7 @@ if (treatmentId === 'treatment1') {
             };
 
             // フォームデータのチェック
-            if (!formData.name || !formData.phone || !formData.selectedSymptom) {
+            if (!formData.selectedSymptom) {
                 alert('お名前・電話番号・メニューすべてご記入ください。');
                 return;
             }
