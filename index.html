@@ -1758,15 +1758,17 @@ if (treatmentId === 'treatment1') {
     currentMonthElement.textContent = `${startDate.getFullYear()}年 ${startDate.getMonth() + 1}月`;
 }
 
-        function nextmonth() {
-            currentDate.setDate(currentDate.getDate() + 30);
-            fetchAvailability(currentDate);
-        }
+function nextmonth() {
+    currentDate.setMonth(currentDate.getMonth() + 1); // 翌月に移動
+    currentDate.setDate(1); // 1日に設定
+    fetchAvailability(currentDate);
+}
 
         function previousmonth() {
-            currentDate.setDate(currentDate.getDate() - 30);
-            fetchAvailability(currentDate);
-        }
+    currentDate.setMonth(currentDate.getMonth() - 1); // 前月に移動
+    currentDate.setDate(1); // 1日に設定
+    fetchAvailability(currentDate);
+}
 
         function nextWeek() {
             currentDate.setDate(currentDate.getDate() + 7);
