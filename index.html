@@ -116,7 +116,8 @@
     background-color: #FFE6CE;
     color: #000;
 }
-        
+
+
         .date-inputs input[type="datetime-local"] {
             width: calc(100% - 22px);
             padding: 10px;
@@ -478,6 +479,33 @@
     line-height: 1.2;
 }
 
+.info-text {
+            margin-top: 20px;
+            /* 上の余白 */
+            margin-bottom: 10px;
+            /* 下に白い隙間を追加 */
+            font-size: 13px;
+            color: #000000;
+            line-height: 1.5;
+            text-align: center;
+            word-wrap: break-word;
+            background-color: #eef9f5;
+            /* 青っぽい背景色を追加 */
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        /* 携帯端末向けのレスポンシブデザイン */
+        @media (max-width: 768px) {
+            .info-text {
+                font-size: 11.5px;
+                /* スマホでは少し小さく */
+                margin-top: 10px;
+                /* 上下のマージンを調整 */
+                line-height: 2.0;
+                /* テキストの高さ調整 */
+            }
+        }
     </style>
 </head>
 
@@ -506,6 +534,7 @@
             <div class="highlight-backgroundman">
                 <span class="highlight-text">脱毛</span>
             </div>
+            <div class="info-text">最大3つまでお選びいただけます</div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="9800">髭脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="3300">VIOダブル脱毛</button>
@@ -521,6 +550,7 @@
             <div class="highlight-backgroundman">
                 <span class="highlight-text">新規トライアルメニュー</span>
             </div>
+            <div class="info-text">最大3つまでお選びいただけます</div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">髭脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">VIOダブル脱毛</button>
@@ -539,6 +569,7 @@
             <div class="highlight-backgroundfemale">
                 <span class="highlight-text">脱毛</span>
             </div>
+            <div class="info-text">最大3つまでお選びいただけます</div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="9800">VIOダブル脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="3300">VIOワックス脱毛</button>
@@ -572,6 +603,7 @@
             <div class="highlight-background">
                 <span class="highlight-text">新規トライアルメニュー</span>
             </div>
+            <div class="info-text">最大3つまでお選びいただけます</div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this, 'treatment16')" data-price="1500">VIOダブル脱毛</button>
                 <button type="button" onclick="selectSymptom(this, 'treatment17')" data-price="3900">VIOワックス脱毛</button>
@@ -828,42 +860,48 @@
         });
 
         function selectSymptom(button, treatmentId) {
-            // 選択された日時をリセット
-            selectedFullDate = '';
+    // 選択された日時をリセット
+    selectedFullDate = '';
 
-            // ボタンの選択状態を切り替える
-            button.classList.toggle('active');
+    // ボタンの選択状態を切り替える
+    button.classList.toggle('active');
 
-            // 選択されたオプションを取得
-            const updatedSelectedButtons = document.querySelectorAll('.symptoms button.active');
+    // 選択されたオプションを取得
+    let updatedSelectedButtons = document.querySelectorAll('.symptoms button.active');
 
-            // メニュー時間と価格をリセット
-            selectedMenuTime = 0;
-            selectedSymptom = [];
-            menuPrice = 0;
+    // もし選択数が3を超えたら、最新のボタン選択を解除
+    if (updatedSelectedButtons.length > 3) {
+        button.classList.remove('active');
+        return; // 処理を中断
+    }
 
-            if (updatedSelectedButtons.length === 0) {
-                // すべてのボタンの選択が解除された場合
-                selectedMenuTime = 0;
-                selectedSymptom = null; // 選択されたメニューをリセット
-                menuPrice = 0; // メニュー価格をリセット
-            } else {
-                // 選択された各ボタンについて処理
-                updatedSelectedButtons.forEach((btn) => {
-                    const selectedMenu = btn.textContent;
-                    selectedMenuTime += menuTimes[selectedMenu] || 0; // 各メニューの時間を合計
-                    selectedSymptom.push(selectedMenu); // 選択されたメニューを配列に追加
-                    menuPrice += parseInt(btn.getAttribute('data-price'), 10) || 0; // 各メニューの価格を合計
-                });
-            }
+    // メニュー時間と価格をリセット
+    selectedMenuTime = 0;
+    selectedSymptom = [];
+    menuPrice = 0;
 
-            console.log('選択されたメニューの時間:', selectedMenuTime);
+    if (updatedSelectedButtons.length === 0) {
+        // すべてのボタンの選択が解除された場合
+        selectedMenuTime = 0;
+        selectedSymptom = null; // 選択されたメニューをリセット
+        menuPrice = 0; // メニュー価格をリセット
+    } else {
+        // 選択された各ボタンについて処理
+        updatedSelectedButtons.forEach((btn) => {
+            const selectedMenu = btn.textContent;
+            selectedMenuTime += menuTimes[selectedMenu] || 0; // 各メニューの時間を合計
+            selectedSymptom.push(selectedMenu); // 選択されたメニューを配列に追加
+            menuPrice += parseInt(btn.getAttribute('data-price'), 10) || 0; // 各メニューの価格を合計
+        });
+    }
 
-            // カレンダーを更新するために取得する日付を渡す
-            fetchAvailability(currentDate);
+    console.log('選択されたメニューの時間:', selectedMenuTime);
 
-            // トリートメントテキストを表示
-            const treatmentText = document.getElementById('treatment-text');
+    // カレンダーを更新するために取得する日付を渡す
+    fetchAvailability(currentDate);
+
+    // トリートメントテキストを表示
+    const treatmentText = document.getElementById('treatment-text');
 
             function createTreatmentContent(title, imageUrl, description, price, time) {
     return `
@@ -1364,6 +1402,9 @@ if (treatmentId === 'treatment1') {
         }
 
         function showMenu(menu) {
+            // 選択された日時をリセット
+            selectedSymptom = [];  // 配列として定義
+
             // すべてのメニューボタンの選択状態をリセット
             document.querySelectorAll('.menu-sections button').forEach(button => {
                 button.classList.remove('active');
@@ -1378,6 +1419,11 @@ if (treatmentId === 'treatment1') {
             if (selectedMenuSection) {
                 selectedMenuSection.style.display = 'block';
             }
+
+    // ▼ 追加処理：症状（symptoms）の選択をリセット
+    document.querySelectorAll('.symptoms button').forEach(button => {
+        button.classList.remove('active');
+    });
 
                         // 対応するメニューボタンを選択状態にする
                         document.querySelectorAll('.menu-sections button').forEach(button => {
