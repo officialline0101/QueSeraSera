@@ -537,12 +537,17 @@
             <div class="info-text">最大3つまでお選びいただけます</div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="9800">髭脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">髭ダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">眉毛脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="3300">VIOダブル脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="4400">VIOワックス脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="4400">VIO光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="3300">Sパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Mパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Lパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">腕全体光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">脚全体光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">全身脱毛</button>
             </div>
         </div>
 
@@ -569,6 +574,7 @@
             <div class="highlight-backgroundfemale">
                 <span class="highlight-text">脱毛</span>
             </div>
+            <div class="info-text">最大3つまでお選びいただけます</div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-price="9800">VIOダブル脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="3300">VIOワックス脱毛</button>
@@ -582,10 +588,12 @@
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">脇ダブル脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">脇ワックス脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">脇光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">眉毛脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Sパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Mパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">Lパーツ光脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-price="14800">全身光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-price="14800">もみあげ脱毛</button>
             </div>
         </div>
 
@@ -776,7 +784,15 @@
     '新規全身光脱毛': 150,
     '新規まつ育': 60,
     '新規髭脱毛': 90,
-    '新規セルフホワイトニング': 60
+    '新規セルフホワイトニング': 60,
+    'もみあげ脱毛': 30,
+    '眉毛脱毛': 30,
+    '新規全身光脱毛': 150,
+    '髭ダブル脱毛': 120,
+    '眉毛脱毛': 30,
+    '腕全体光脱毛': 45,
+    '脚全体光脱毛': 45,
+    '全身脱毛': 180
 };
 
         let selectedMenuTime = 0;
@@ -1636,11 +1652,11 @@ if (treatmentId === 'treatment1') {
                     slotEnd.setMinutes(slotStart.getMinutes() + menuDuration + visitDuration + irradiationsDuration);
 
                     // 18時以降に終了する予約を不可にする (17:30は可)
-                    if (slotEnd.getHours() === 20 && slotEnd.getMinutes() > 30) {
+                    if (slotEnd.getHours() === 21 && slotEnd.getMinutes() > 0) {
                         cell.textContent = '✕';
                         cell.classList.add('unavailable');
                         continue;
-                    } else if (slotEnd.getHours() > 20) {
+                    } else if (slotEnd.getHours() > 21) {
                         cell.textContent = '✕';
                         cell.classList.add('unavailable');
                         continue;
