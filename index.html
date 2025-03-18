@@ -914,7 +914,7 @@
             const totalAmountText = `・<span style="color:red;"><strong>合計金額</strong></span>：¥${menuPrice + optionsPrice}`;
 
             // 希望日時が選択された場合の表示
-            const selectedDateText = selectedFullDate ? `・<span style="color:red;"><strong>希望日時</strong></span>：${selectedFullDate}` : '・日時が未選択です';
+            const selectedDateText = selectedFullDate ? `・<span style="color:red;"><strong>希望日時</strong></span><br>${selectedFullDate}` : '・日時が未選択です';
 
             // displayInfo要素に情報を表示
             document.getElementById('displayInfo').innerHTML = `
@@ -1275,22 +1275,26 @@
             const selectedTime = cell.parentElement.firstChild.textContent; // 時間
             const date = new Date(selectedDay);
 
-            // 日付部分を「○○年○○月○○日 ○○:○○」形式に変換
-            selectedFullDate = `${date.getFullYear()}年${('0' + (date.getMonth() + 1)).slice(-2)}月${('0' + date.getDate()).slice(-2)}日 ${selectedTime}`;
+    // 日付部分を「○○年○○月○○日（曜日） ○○:○○」形式に変換 (曜日を含める)
+    const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][date.getDay()];
+    selectedFullDate = `${date.getFullYear()}年${('0' + (date.getMonth() + 1)).slice(-2)}月${('0' + date.getDate()).slice(-2)}日（${dayOfWeek}） ${selectedTime}`;
 
-            // 希望日時を即座に更新
+    // 希望日時を即座に更新
             updateDisplayInfo();
         }
 
-        function submitForm() {
-            const formData = {
-                visitCount: visitCount,
-                selectedSymptom: selectedSymptom,
-                secondsecondanniversaryCount: secondsecondanniversaryCount,
-                irradiationsCount: irradiationsCount,
-                dates: [selectedFullDate],
-                message: document.getElementById('message').value
-            };
+function submitForm() {
+    const formData = {
+        visitCount: visitCount,
+        selectedSymptom: selectedSymptom,
+        secondsecondanniversaryCount: secondsecondanniversaryCount,
+        irradiationsCount: irradiationsCount,
+        dates: [selectedFullDate],
+        message: document.getElementById('message').value
+    };
+
+    // 曜日を除いた日付形式を作成
+    const dateWithoutDayOfWeek = formData.dates[0].replace(/（.*?）/, '');
 
             // フォームデータのチェック
             if (!formData.selectedSymptom) {
@@ -1298,20 +1302,20 @@
                 return;
             }
 
-            // LINEトークにメッセージを送信
-            liff.sendMessages([{
-                type: 'text',
-                text: `【予約フォーム】\nご性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${formData.dates[0]}\nメッセージ：${formData.message}`
-            }]).then(() => {
-                /* メッセージ送信成功時の処理 */
-                alert('当日キャンセルはくれぐれもお控えくださいますようお願いいたします。（キャンセル料のお支払い対象となります。）');
-                /* LIFFウィンドウを閉じる */
-                liff.closeWindow();
-            }).catch((err) => {
-                /* メッセージ送信失敗時の処理 */
-                console.error('メッセージの送信に失敗しました', err);
-            });
-        }
+    // LINEトークにメッセージを送信
+    liff.sendMessages([{
+        type: 'text',
+        text: `【予約フォーム】\nご性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${dateWithoutDayOfWeek}\nメッセージ：${formData.message}`
+    }]).then(() => {
+        /* メッセージ送信成功時の処理 */
+        alert('当日キャンセルはくれぐれもお控えくださいますようお願いいたします。（キャンセル料のお支払い対象となります。）');
+        /* LIFFウィンドウを閉じる */
+        liff.closeWindow();
+    }).catch((err) => {
+        /* メッセージ送信失敗時の処理 */
+        console.error('メッセージの送信に失敗しました', err);
+    });
+}
 
         function formatDate(dateStr) {
             if (!dateStr) return '';
