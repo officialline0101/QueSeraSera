@@ -895,7 +895,7 @@
         });
 
         function updateDisplayInfo() {
-            const visitCountText = visitCount ? `・<span style="color:red;"><strong>ご性別</strong></span>：${visitCount}` : '・ご性別が未選択です';
+            const visitCountText = visitCount ? `・<span style="color:red;"><strong>性別</strong></span>：${visitCount}` : '・性別が未選択です';
 
             // メニューが選択されていたら、各メニューを改行して表示
             const selectedSymptomText = selectedSymptom.length > 0
@@ -1313,7 +1313,7 @@
 
     liff.sendMessages([{
         type: 'text',
-        text: `【予約フォーム】\nご性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${dateWithoutDayOfWeek}\nメッセージ：${formData.message}`
+        text: `【予約フォーム】\n性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${dateWithoutDayOfWeek}\nメッセージ：${formData.message}`
     }]).then(() => {
         alert('当日キャンセルはくれぐれもお控えくださいますようお願いいたします。（キャンセル料のお支払い対象となります。）');
         liff.closeWindow();
