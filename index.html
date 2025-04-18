@@ -1283,36 +1283,36 @@
             updateDisplayInfo();
         }
 
-function submitForm() {
+
+        function submitForm() {
+    // selectedSymptomが配列の場合は文字列に変換
+    const formattedSymptom = Array.isArray(selectedSymptom)
+        ? selectedSymptom.join(' / ')
+        : selectedSymptom;
+
     const formData = {
         visitCount: visitCount,
-        selectedSymptom: selectedSymptom,
+        selectedSymptom: formattedSymptom,
         secondsecondanniversaryCount: secondsecondanniversaryCount,
         irradiationsCount: irradiationsCount,
         dates: [selectedFullDate],
         message: document.getElementById('message').value
     };
 
-    // 曜日を除いた日付形式を作成
     const dateWithoutDayOfWeek = formData.dates[0].replace(/（.*?）/, '');
 
-            // フォームデータのチェック
-            if (!formData.selectedSymptom) {
-                alert('お名前・電話番号・メニューすべてご記入ください。');
-                return;
-            }
+    if (!formData.selectedSymptom) {
+        alert('お名前・電話番号・メニューすべてご記入ください。');
+        return;
+    }
 
-    // LINEトークにメッセージを送信
     liff.sendMessages([{
         type: 'text',
         text: `【予約フォーム】\nご性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${dateWithoutDayOfWeek}\nメッセージ：${formData.message}`
     }]).then(() => {
-        /* メッセージ送信成功時の処理 */
         alert('当日キャンセルはくれぐれもお控えくださいますようお願いいたします。（キャンセル料のお支払い対象となります。）');
-        /* LIFFウィンドウを閉じる */
         liff.closeWindow();
     }).catch((err) => {
-        /* メッセージ送信失敗時の処理 */
         console.error('メッセージの送信に失敗しました', err);
     });
 }
