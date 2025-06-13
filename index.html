@@ -534,14 +534,35 @@
   .submit-button {
     font-weight: bold;
   }
+
+.title-with-image {
+  display: flex;
+  justify-content: center;  /* 中央揃え */
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logo-image {
+  width: 120px;      /* 必要に応じてサイズ調整可 */
+  height: auto;
+}
+
+/* スマホ向けに画像サイズ微調整（任意） */
+@media screen and (max-width: 600px) {
+  .logo-image {
+    width: 100px;
+  }
+}
         
     </style>
 </head>
 
 
 <body>
-    <div class="container">
-        <h1 class="title">ケセラセラ<br>予約フォーム</h1>
+<div class="container">
+  <div class="title-with-image">
+    <img src="https://www.dropbox.com/scl/fi/fc7hydgsaesylhxxo0qc0/_.png?rlkey=nudq0llox55v0n4xrpedv9p9i&st=h4wvxree&raw=1" alt="ケセラセラロゴ" class="logo-image" />
+  </div>
 
         <div class="visit-buttons">
             <button type="button" id="repeatVisit" onclick="selectVisit(this)">女性</button>
