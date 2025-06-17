@@ -580,6 +580,32 @@
   }
 }
 
+.menu-sections button {
+    flex-grow: 1;
+    padding: 10px;
+    height: 42px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f7f7f7;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 100%;
+    margin: 3px; /* ← ここ追加！隙間できるよ〜 */
+}
+
+@media (max-width: 600px) {
+    .menu-sections button {
+        flex-basis: calc(50% - 10px);
+    }
+}
+
+@media (max-width: 400px) {
+    .menu-sections button {
+        flex-basis: 100%;
+    }
+}
     </style>
 </head>
 
@@ -1267,11 +1293,16 @@
             fetchAvailability(currentDate);
         }
 
-        function showMenu(menuId) {
-            // すべてのメニューボタンの選択状態をリセット
-            document.querySelectorAll('.menu-sections button').forEach(button => {
-                button.classList.remove('active');
-            });
+function showMenu(menuId) {
+    // すべてのメニューボタンの選択状態をリセット
+    document.querySelectorAll('.menu-sections button').forEach(button => {
+        button.classList.remove('active');
+
+        // onclick 属性の中に menuId が含まれていたら active にする
+        if (button.getAttribute('onclick')?.includes(`showMenu('${menuId}')`)) {
+            button.classList.add('active');
+        }
+    });
 
             // すべてのメニューセクションを非表示にする
             const menuSections = document.querySelectorAll('.menu-section');
