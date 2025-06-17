@@ -532,7 +532,7 @@
             }
         }
 
- .info-textmenu {
+.info-textmenu {
     margin-top: 20px;
     /* 上の余白 */
     margin-bottom: 10px;
@@ -546,20 +546,20 @@
     /* 青っぽい背景色を追加 */
     padding: 10px;
     border-radius: 4px;
-    font-weight: bold;  /* 追加：テキストを太文字に */
+    font-weight: 500;  /* 太さを最大に */
 }
 
-        /* 携帯端末向けのレスポンシブデザイン */
-        @media (max-width: 768px) {
-            .info-textmenu {
-                font-size: 11.5px;
-                /* スマホでは少し小さく */
-                margin-top: 10px;
-                /* 上下のマージンを調整 */
-                line-height: 2.0;
-                /* テキストの高さ調整 */
-            }
-        }
+/* 携帯端末向けのレスポンシブデザイン */
+@media (max-width: 768px) {
+    .info-textmenu {
+        font-size: 11.5px;
+        /* スマホでは少し小さく */
+        margin-top: 10px;
+        /* 上下のマージンを調整 */
+        line-height: 2.0;
+        /* テキストの高さ調整 */
+    }
+}
 
 .title-with-image {
   display: flex;
@@ -590,7 +590,7 @@
     <img src="https://www.dropbox.com/scl/fi/fc7hydgsaesylhxxo0qc0/_.png?rlkey=nudq0llox55v0n4xrpedv9p9i&st=h4wvxree&raw=1" alt="ケセラセラロゴ" class="logo-image" />
   </div>
 
-<div class="info-textmenu">〜性別を選択してお進みください〜</div>
+<div class="info-textmenu">〜 性別を選択してお進みください 〜</div>
 
         <div class="visit-buttons">
             <button type="button" id="repeatVisit" onclick="selectVisit(this)">女性</button>
