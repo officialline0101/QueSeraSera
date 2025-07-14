@@ -22,7 +22,7 @@
         .container {
             background-color: #fff;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 0px rgba(0, 0, 0, 0.1);
             width: 90%;
             max-width: 500px;
             padding: 20px;
@@ -67,6 +67,8 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
+            transform: translateX(px);
+            /* 左に2pxずらす */
         }
 
         .visit-buttons button,
@@ -97,6 +99,8 @@
             flex-wrap: wrap;
             gap: 10px;
             margin-bottom: 20px;
+            transform: translateX(-1px);
+            /* 左に2pxずらす */
         }
 
         .symptoms button {
@@ -112,6 +116,8 @@
             white-space: nowrap;
             min-width: 130px;
             /* 必要に応じて調整 */
+            transform: translateX(-1px);
+            /* 左に2pxずらす */
         }
 
         .symptoms button.active {
@@ -138,6 +144,8 @@
             color: #fff;
             font-size: 18px;
             cursor: pointer;
+            transform: translateX(-1px);
+            /* 左に2pxずらす */
         }
 
         .calendar-container {
@@ -302,52 +310,54 @@
         .highlight-background {
             background-color: #FFE6CE;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 4px;
             margin-bottom: 15px;
             margin-top: 10px;
-            /* 上に余白を追加 */
             text-align: center;
-            /* コンテナ内の要素を中央に配置 */
+            color: white;
+            /* テキストを白に */
         }
 
         .highlight-text {
             display: block;
             font-weight: bold;
             text-align: center;
-            /* テキストを中央揃えにする */
+            border-radius: 0;
+            color: white;
+            /* テキストを白に */
         }
 
         .highlight-backgroundman {
             background-color: #FFE6CE;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 4px;
             margin-bottom: 15px;
             margin-top: 10px;
-            /* 上に余白を追加 */
             text-align: center;
-            /* コンテナ内の要素を中央に配置 */
+            color: white;
+            /* テキストを白に */
         }
 
         .highlight-backgroundmanaaa {
             background-color: #d4f6de;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 4px;
             margin-bottom: 15px;
             margin-top: 10px;
-            /* 上に余白を追加 */
             text-align: center;
-            /* コンテナ内の要素を中央に配置 */
+            color: white;
+            /* テキストを白に */
         }
 
         .highlight-backgroundfemale {
             background-color: #FFE6CE;
             padding: 10px;
-            border-radius: 10px;
+            border-radius: 4px;
             margin-bottom: 15px;
             margin-top: 10px;
-            /* 上に余白を追加 */
             text-align: center;
-            /* コンテナ内の要素を中央に配置 */
+            color: white;
+            /* テキストを白に */
         }
 
         .red-circle {
@@ -368,6 +378,8 @@
             margin-bottom: 20px;
             justify-content: space-between;
             /* ボタンを均等に配置 */
+            transform: translateX(-1px);
+            /* 左に2pxずらす */
         }
 
         .menu-sections button {
@@ -385,12 +397,16 @@
             white-space: nowrap;
             min-width: 100%;
             /* 各ボタンの最小幅を設定 */
+            transform: translateX(-1px);
+            /* 左に2pxずらす */
         }
 
         @media (max-width: 600px) {
             .menu-sections button {
                 flex-basis: calc(50% - 10px);
                 /* 画面が狭い場合は2列にする */
+                transform: translateX(-1px);
+                /* 左に2pxずらす */
             }
         }
 
@@ -398,6 +414,8 @@
             .menu-sections button {
                 flex-basis: 100%;
                 /* さらに狭い画面では1列にする */
+                transform: translateX(-1px);
+                /* 左に2pxずらす */
             }
         }
 
@@ -494,31 +512,33 @@
             z-index: 1;
         }
 
-.title {
-    font-size: 24px;
-    color: #4A4A4A;
-    text-align: center;
-    margin-bottom: 20px;
-    line-height: 1.2;
-    font-weight: 300; /* ← ここを追加 */
-}
+        .title {
+            font-size: 24px;
+            color: #4A4A4A;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            font-weight: 300;
+            /* ← ここを追加 */
+        }
 
- .info-text {
-    margin-top: 20px;
-    /* 上の余白 */
-    margin-bottom: 10px;
-    /* 下に白い隙間を追加 */
-    font-size: 13px;
-    color: #ffffff;
-    line-height: 1.5;
-    text-align: center;
-    word-wrap: break-word;
-    background-color: #b8d9ae;
-    /* 青っぽい背景色を追加 */
-    padding: 10px;
-    border-radius: 4px;
-    font-weight: bold;  /* 追加：テキストを太文字に */
-}
+        .info-text {
+            margin-top: 20px;
+            /* 上の余白 */
+            margin-bottom: 10px;
+            /* 下に白い隙間を追加 */
+            font-size: 13px;
+            color: #ffffff;
+            line-height: 1.5;
+            text-align: center;
+            word-wrap: break-word;
+            background-color: #b8d9ae;
+            /* 青っぽい背景色を追加 */
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: bold;
+            /* 追加：テキストを太文字に */
+        }
 
         /* 携帯端末向けのレスポンシブデザイン */
         @media (max-width: 768px) {
@@ -532,91 +552,102 @@
             }
         }
 
-.info-textmenu {
-    margin-top: 20px;
-    /* 上の余白 */
-    margin-bottom: 10px;
-    /* 下に白い隙間を追加 */
-    font-size: 13px;
-    color: #080808;
-    line-height: 1.5;
-    text-align: center;
-    word-wrap: break-word;
-    background-color: #ffffff;
-    /* 青っぽい背景色を追加 */
-    padding: 10px;
-    border-radius: 4px;
-    font-weight: 500;  /* 太さを最大に */
-}
+        .info-textmenu {
+            margin-top: 20px;
+            /* 上の余白 */
+            margin-bottom: 10px;
+            /* 下に白い隙間を追加 */
+            font-size: 13px;
+            color: #080808;
+            line-height: 1.5;
+            text-align: center;
+            word-wrap: break-word;
+            background-color: #ffffff;
+            /* 青っぽい背景色を追加 */
+            padding: 10px;
+            border-radius: 4px;
+            font-weight: 500;
+            /* 太さを最大に */
+        }
 
-/* 携帯端末向けのレスポンシブデザイン */
-@media (max-width: 768px) {
-    .info-textmenu {
-        font-size: 11.5px;
-        /* スマホでは少し小さく */
-        margin-top: 10px;
-        /* 上下のマージンを調整 */
-        line-height: 2.0;
-        /* テキストの高さ調整 */
-    }
-}
+        /* 携帯端末向けのレスポンシブデザイン */
+        @media (max-width: 768px) {
+            .info-textmenu {
+                font-size: 11.5px;
+                /* スマホでは少し小さく */
+                margin-top: 10px;
+                /* 上下のマージンを調整 */
+                line-height: 2.0;
+                /* テキストの高さ調整 */
+            }
+        }
 
-.title-with-image {
-  display: flex;
-  justify-content: center;  /* 中央揃え */
-  align-items: center;
-  margin-bottom: 20px;
-}
+        .title-with-image {
+            display: flex;
+            justify-content: center;
+            /* 中央揃え */
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-.logo-image {
-  width: 120px;      /* 必要に応じてサイズ調整可 */
-  height: auto;
-}
+        .logo-image {
+            width: 120px;
+            /* 必要に応じてサイズ調整可 */
+            height: auto;
+        }
 
-/* スマホ向けに画像サイズ微調整（任意） */
-@media screen and (max-width: 600px) {
-  .logo-image {
-    width: 100px;
-  }
-}
+        /* スマホ向けに画像サイズ微調整（任意） */
+        @media screen and (max-width: 600px) {
+            .logo-image {
+                width: 100px;
+            }
+        }
 
-.menu-sections button {
-    flex-grow: 1;
-    padding: 10px;
-    height: 42px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f7f7f7;
-    cursor: pointer;
-    box-sizing: border-box;
-    text-align: center;
-    white-space: nowrap;
-    min-width: 100%;
-    margin: 3px; /* ← ここ追加！隙間できるよ〜 */
-}
+        .menu-sections button {
+            flex-grow: 1;
+            padding: 10px;
+            height: 42px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f7f7f7;
+            cursor: pointer;
+            box-sizing: border-box;
+            text-align: center;
+            white-space: nowrap;
+            min-width: 100%;
+            margin: 3px;
+            /* ← ここ追加！隙間できるよ〜 */
+            transform: translateX(-21px);
+            /* 左に2pxずらす */
+        }
 
-@media (max-width: 600px) {
-    .menu-sections button {
-        flex-basis: calc(50% - 10px);
-    }
-}
+        @media (max-width: 600px) {
+            .menu-sections button {
+                flex-basis: calc(50% - 10px);
+                transform: translateX(-2px);
+                /* 左に2pxずらす */
+            }
+        }
 
-@media (max-width: 400px) {
-    .menu-sections button {
-        flex-basis: 100%;
-    }
-}
+        @media (max-width: 400px) {
+            .menu-sections button {
+                flex-basis: 100%;
+                transform: translateX(-2px);
+                /* 左に2pxずらす */
+            }
+        }
     </style>
 </head>
 
 
 <body>
-<div class="container">
-  <div class="title-with-image">
-    <img src="https://www.dropbox.com/scl/fi/fc7hydgsaesylhxxo0qc0/_.png?rlkey=nudq0llox55v0n4xrpedv9p9i&st=h4wvxree&raw=1" alt="ケセラセラロゴ" class="logo-image" />
-  </div>
+    <div class="container">
+        <div class="title-with-image">
+            <img src="https://www.dropbox.com/scl/fi/fc7hydgsaesylhxxo0qc0/_.png?rlkey=nudq0llox55v0n4xrpedv9p9i&st=h4wvxree&raw=1"
+                alt="ケセラセラロゴ" class="logo-image" />
+        </div>
 
-<div class="info-textmenu">〜 性別を選択してお進みください 〜</div>
+        <div class="info-textmenu">〜 性別を選択してお進みください 〜</div>
 
         <div class="visit-buttons">
             <button type="button" id="repeatVisit" onclick="selectVisit(this)">女性</button>
@@ -641,25 +672,16 @@
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-id="symptom1" data-price="9800">髭脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom2"
-                    data-price="14800">髭ダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom2" data-price="14800">髭ダブル脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-id="symptom3" data-price="14800">眉毛脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom4"
-                    data-price="3300">VIOダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom5"
-                    data-price="4400">VIOワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom4" data-price="3300">VIOダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom5" data-price="4400">VIOワックス脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-id="symptom6" data-price="4400">VIO光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom7"
-                    data-price="3300">Sパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom8"
-                    data-price="14800">Mパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom9"
-                    data-price="14800">Lパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom10"
-                    data-price="14800">腕全体光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom11"
-                    data-price="14800">脚全体光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom12" data-price="14800">全身脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom7" data-price="3300">Sパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom8" data-price="14800">Mパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom9" data-price="14800">Lパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom10" data-price="14800">腕全体光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom11" data-price="14800">脚全体光脱毛</button>
             </div>
         </div>
 
@@ -669,24 +691,14 @@
             </div>
             <div class="symptoms">
                 <button type="button" onclick="selectSymptom(this)" data-id="symptom13" data-price="1500">髭脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom14"
-                    data-price="3900">VIOダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom15"
-                    data-price="5800">VIOワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom16"
-                    data-price="5800">VIO光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom17"
-                    data-price="1500">Sパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom18"
-                    data-price="3900">Mパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom19"
-                    data-price="5800">Lパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom20"
-                    data-price="5800">全身光脱毛Ⅰ</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom21"
-                    data-price="1500">全身光脱毛Ⅱ</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom22"
-                    data-price="3900">セルフホワイトニング</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom14" data-price="3900">VIOダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom15" data-price="5800">VIOワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom16" data-price="5800">VIO光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom17" data-price="1500">Sパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom18" data-price="3900">Mパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom19" data-price="5800">Lパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom20" data-price="5800">全身光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom22" data-price="3900">セルフホワイトニング</button>
             </div>
         </div>
 
@@ -695,40 +707,23 @@
                 <span class="highlight-text">脱毛</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom23"
-                    data-price="9800">VIOダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom24"
-                    data-price="3300">VIOワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom25"
-                    data-price="4400">VIO光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom26"
-                    data-price="4400">お顔ダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom27"
-                    data-price="3300">お顔ワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom28"
-                    data-price="14800">お顔光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom29"
-                    data-price="14800">うなじダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom30"
-                    data-price="14800">うなじワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom31"
-                    data-price="14800">うなじ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom32"
-                    data-price="14800">ワキダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom33"
-                    data-price="14800">ワキワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom23" data-price="9800">VIOダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom24" data-price="3300">VIOワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom25" data-price="4400">VIO光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom26" data-price="4400">お顔ダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom27" data-price="3300">お顔ワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom28" data-price="14800">お顔光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom29" data-price="14800">うなじダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom30" data-price="14800">うなじワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom31" data-price="14800">うなじ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom32" data-price="14800">ワキダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom33" data-price="14800">ワキワックス脱毛</button>
                 <button type="button" onclick="selectSymptom(this)" data-id="symptom34" data-price="14800">ワキ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom35"
-                    data-price="14800">もみあげ脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom36" data-price="14800">眉毛脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom37"
-                    data-price="14800">Sパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom38"
-                    data-price="14800">Mパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom39"
-                    data-price="14800">Lパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this)" data-id="symptom40"
-                    data-price="14800">全身光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom35" data-price="14800">もみあげ脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom37" data-price="14800">Sパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom38" data-price="14800">Mパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom39" data-price="14800">Lパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this)" data-id="symptom40" data-price="14800">全身光脱毛</button>
             </div>
         </div>
 
@@ -746,44 +741,25 @@
                 <span class="highlight-text">新規トライアルメニュー</span>
             </div>
             <div class="symptoms">
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom42"
-                    data-price="1500">VIOダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom43"
-                    data-price="3900">VIOワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom44"
-                    data-price="5800">VIO光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom45"
-                    data-price="5800">お顔ダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom46"
-                    data-price="1500">お顔ワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom47"
-                    data-price="3900">お顔光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom48"
-                    data-price="5800">うなじダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom49"
-                    data-price="5800">うなじワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom50"
-                    data-price="1500">うなじ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom51"
-                    data-price="3900">ワキダブル脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom52"
-                    data-price="5800">ワキワックス脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom53"
-                    data-price="5800">ワキ</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom54"
-                    data-price="1500">Sパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom55"
-                    data-price="3900">Mパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom56"
-                    data-price="5800">Lパーツ光脱毛</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom57"
-                    data-price="5800">全身光脱毛Ⅰ</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom58"
-                    data-price="3900">全身光脱毛Ⅱ</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom59"
-                    data-price="5800">まつ育</button>
-                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom60"
-                    data-price="5800">セルフホワイトニング</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom42" data-price="1500">VIOダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom43" data-price="3900">VIOワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom44" data-price="5800">VIO光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom45" data-price="5800">お顔ダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom46" data-price="1500">お顔ワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom47" data-price="3900">お顔光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom48" data-price="5800">うなじダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom49" data-price="5800">うなじワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom50" data-price="1500">うなじ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom51" data-price="3900">ワキダブル脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom52" data-price="5800">ワキワックス脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom53" data-price="5800">ワキ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment16')" data-id="symptom54" data-price="1500">Sパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom55" data-price="3900">Mパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom56" data-price="5800">Lパーツ光脱毛</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom57" data-price="5800">全身光脱毛Ⅰ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment17')" data-id="symptom58" data-price="3900">全身光脱毛Ⅱ</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment18')" data-id="symptom59" data-price="5800">まつ育</button>
+                <button type="button" onclick="selectSymptom(this, 'treatment19')" data-id="symptom60" data-price="5800">セルフホワイトニング</button>
             </div>
         </div>
 
@@ -1293,16 +1269,16 @@
             fetchAvailability(currentDate);
         }
 
-function showMenu(menuId) {
-    // すべてのメニューボタンの選択状態をリセット
-    document.querySelectorAll('.menu-sections button').forEach(button => {
-        button.classList.remove('active');
+        function showMenu(menuId) {
+            // すべてのメニューボタンの選択状態をリセット
+            document.querySelectorAll('.menu-sections button').forEach(button => {
+                button.classList.remove('active');
 
-        // onclick 属性の中に menuId が含まれていたら active にする
-        if (button.getAttribute('onclick')?.includes(`showMenu('${menuId}')`)) {
-            button.classList.add('active');
-        }
-    });
+                // onclick 属性の中に menuId が含まれていたら active にする
+                if (button.getAttribute('onclick')?.includes(`showMenu('${menuId}')`)) {
+                    button.classList.add('active');
+                }
+            });
 
             // すべてのメニューセクションを非表示にする
             const menuSections = document.querySelectorAll('.menu-section');
@@ -1358,30 +1334,30 @@ function showMenu(menuId) {
             const selectedTime = cell.parentElement.firstChild.textContent; // 時間
             const date = new Date(selectedDay);
 
-    // 日付部分を「○○年○○月○○日（曜日） ○○:○○」形式に変換 (曜日を含める)
-    const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][date.getDay()];
-    selectedFullDate = `${date.getFullYear()}年${('0' + (date.getMonth() + 1)).slice(-2)}月${('0' + date.getDate()).slice(-2)}日（${dayOfWeek}） ${selectedTime}`;
+            // 日付部分を「○○年○○月○○日（曜日） ○○:○○」形式に変換 (曜日を含める)
+            const dayOfWeek = ['日', '月', '火', '水', '木', '金', '土'][date.getDay()];
+            selectedFullDate = `${date.getFullYear()}年${('0' + (date.getMonth() + 1)).slice(-2)}月${('0' + date.getDate()).slice(-2)}日（${dayOfWeek}） ${selectedTime}`;
 
-    // 希望日時を即座に更新
+            // 希望日時を即座に更新
             updateDisplayInfo();
         }
 
 
         function submitForm() {
-    // selectedSymptomが配列の場合は文字列に変換
-    const formattedSymptom = Array.isArray(selectedSymptom)
-        ? selectedSymptom.join(' / ')
-        : selectedSymptom;
+            // selectedSymptomが配列の場合は文字列に変換
+            const formattedSymptom = Array.isArray(selectedSymptom)
+                ? selectedSymptom.join(' / ')
+                : selectedSymptom;
 
-const formData = {
-    visitCount: visitCount,
-    selectedSymptom: formattedSymptom,
-    irradiationsCount: irradiationsCount,
-    dates: [selectedFullDate],
-    message: document.getElementById('message').value.trim()
-};
+            const formData = {
+                visitCount: visitCount,
+                selectedSymptom: formattedSymptom,
+                irradiationsCount: irradiationsCount,
+                dates: [selectedFullDate],
+                message: document.getElementById('message').value.trim()
+            };
 
-const dateWithoutDayOfWeek = formData.dates[0].replace(/（.*?）/, '');
+            const dateWithoutDayOfWeek = formData.dates[0].replace(/（.*?）/, '');
 
             if (!formData.selectedSymptom) {
                 alert('メニューを選択してください。');
@@ -1393,22 +1369,22 @@ const dateWithoutDayOfWeek = formData.dates[0].replace(/（.*?）/, '');
                 return;
             }
 
-// メッセージ部分を条件付きで作成
-let messageText = `【予約フォーム】\nご性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${dateWithoutDayOfWeek}`;
-if (formData.message) {
-    messageText += `\nメッセージ：${formData.message}`;
-}
+            // メッセージ部分を条件付きで作成
+            let messageText = `【予約フォーム】\nご性別：${formData.visitCount}\nメニュー：${formData.selectedSymptom}\n希望日時：\n ${dateWithoutDayOfWeek}`;
+            if (formData.message) {
+                messageText += `\nメッセージ：${formData.message}`;
+            }
 
-liff.sendMessages([{
-    type: 'text',
-    text: messageText
-}]).then(() => {
-    alert('当日キャンセルはくれぐれもお控えくださいますようお願いいたします。\nキャンセル料支払い対象となります');
-    liff.closeWindow();
-}).catch((err) => {
-    console.error('メッセージの送信に失敗しました', err);
-});
-}
+            liff.sendMessages([{
+                type: 'text',
+                text: messageText
+            }]).then(() => {
+                alert('当日キャンセルはくれぐれもお控えくださいますようお願いいたします。\nキャンセル料支払い対象となります');
+                liff.closeWindow();
+            }).catch((err) => {
+                console.error('メッセージの送信に失敗しました', err);
+            });
+        }
 
         function formatDate(dateStr) {
             if (!dateStr) return '';
@@ -1724,15 +1700,15 @@ liff.sendMessages([{
             currentMonthElement.textContent = `${startDate.getFullYear()}年 ${startDate.getMonth() + 1}月`;
         }
 
-function nextmonth() {
-    currentDate.setDate(currentDate.getDate() + 28); // 28日後に移動
-    fetchAvailability(currentDate);
-}
+        function nextmonth() {
+            currentDate.setDate(currentDate.getDate() + 28); // 28日後に移動
+            fetchAvailability(currentDate);
+        }
 
-function previousmonth() {
-    currentDate.setDate(currentDate.getDate() - 28); // 28日前に移動
-    fetchAvailability(currentDate);
-}
+        function previousmonth() {
+            currentDate.setDate(currentDate.getDate() - 28); // 28日前に移動
+            fetchAvailability(currentDate);
+        }
 
         function nextWeek() {
             currentDate.setDate(currentDate.getDate() + 7);
