@@ -897,7 +897,8 @@
         let selectedirradiationsTime = 0; // 訪問回数で選択された時間
 
         let menuTimes = {
-            'VIOダブル脱毛': 90,
+            'VIOダブル脱毛': 120,
+            'VIOダブル脱毛.': 120,
             'VIOワックス脱毛': 90,
             'VIO光脱毛': 60,
             'お顔ダブル脱毛': 105,
@@ -919,7 +920,6 @@
             '全身光脱毛': 120,
             'まつ育': 30,
             'セルフホワイトニング': 30,
-            'VIOダブル脱毛.': 150,
             'VIOワックス脱毛.': 120,
             'VIO光脱毛.': 90,
             'お顔ダブル脱毛.': 120,
@@ -1080,7 +1080,7 @@
                 let updatedSelectedButtons = document.querySelectorAll('.symptoms button.active');
 
                 // もし選択数が3を超えたら、新しい選択をキャンセル
-                if (updatedSelectedButtons.length >= 3) {
+                if (updatedSelectedButtons.length >= 5) {
                     return;
                 }
 
