@@ -987,17 +987,6 @@
   </div>
 </div>
 
-<!-- 第三希望日時 -->
-<div class="labelueni">第三希望日時<span class="required">必須</span></div>
-<div class="datetime-wrapper" style="text-align: center;">
-  <span class="placeholder" id="placeholder3">⇩タップして日時を入力⇩</span>
-  <input type="hidden" id="date3" name="date3">
-  <div class="dt-grid">
-    <select id="date3_day" class="datetime-input" aria-label="日付を選択"></select>
-    <select id="date3_time" class="datetime-input" aria-label="時間（00/30のみ）"></select>
-  </div>
-</div>
-
         <div class="labelueni">メッセージ<br>（質問等お気軽にご記入ください）</div>
         <textarea id="message" rows="4" placeholder="メッセージを入力してください"></textarea>
 
@@ -1195,12 +1184,10 @@ function updateDisplayInfo() {
   // ★希望日時1〜3の取得＆フォーマット表示
   const d1 = document.getElementById('date1').value;
   const d2 = document.getElementById('date2').value;
-  const d3 = document.getElementById('date3').value;
 
   const hopeDateTexts = [];
   if (d1) hopeDateTexts.push(`第1希望：${formatDateTime(d1)}`);
   if (d2) hopeDateTexts.push(`第2希望：${formatDateTime(d2)}`);
-  if (d3) hopeDateTexts.push(`第3希望：${formatDateTime(d3)}`);
 
   const hopeDatesText =
     hopeDateTexts.length > 0
@@ -1258,42 +1245,42 @@ function updateDisplayInfo() {
     return `${dayStr}T${timeStr}`;
   }
 
-  // 日付セレクト：今日から 'days' 日ぶんの候補を作る（月曜・火曜は除外）
-  function buildDateOptions(selectEl, days = 120, startDate = new Date()) {
-    const d = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
-    selectEl.innerHTML = '<option value="" disabled selected>日付を選択</option>';
+// ★日付セレクト：月曜も含めるように修正（火曜だけスキップ）
+function buildDateOptions(selectEl, days = 120, startDate = new Date()) {
+  const d = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+  selectEl.innerHTML = '<option value="" disabled selected>日付を選択</option>';
 
-    for (let i = 0; i < days; i++) {
-      const wd = d.getDay(); // 0=日曜 … 6=土曜
+  for (let i = 0; i < days; i++) {
+    const wd = d.getDay(); // 0=日曜 … 6=土曜
 
-      // ★月曜(1)と火曜(2)はスキップ
-      if (wd !== 1 && wd !== 2) {
-        const y = d.getFullYear();
-        const m = pad(d.getMonth() + 1);
-        const day = pad(d.getDate());
-        const value = `${y}-${m}-${day}`;
-        const label = `${y}/${m}/${day}（${JP_WD[wd]}）`;
+    // ★火曜(2)だけスキップ（月曜は含める）
+    if (wd !== 2) {
+      const y = d.getFullYear();
+      const m = pad(d.getMonth() + 1);
+      const day = pad(d.getDate());
+      const value = `${y}-${m}-${day}`;
+      const label = `${y}/${m}/${day}（${JP_WD[wd]}）`;
 
-        const opt = document.createElement('option');
-        opt.value = value;
-        opt.textContent = label;
-        selectEl.appendChild(opt);
-      }
-
-      d.setDate(d.getDate() + 1);
+      const opt = document.createElement('option');
+      opt.value = value;
+      opt.textContent = label;
+      selectEl.appendChild(opt);
     }
-  }
 
-  // 曜日ごとの営業時間設定（0=日曜, 1=月曜, …, 6=土曜）
-  const WEEKLY_HOURS = {
-    0: { start: 10, end: 16 }, // 日曜 10:00〜16:30
-    1: { start: 10, end: 18 }, // 月曜 10:00〜18:30
-    2: { start: 10, end: 18 }, // 火曜 10:00〜18:30
-    3: { start: 10, end: 18 }, // 水曜
-    4: { start: 10, end: 18 }, // 木曜
-    5: { start: 10, end: 18 }, // 金曜
-    6: { start: 10, end: 16 }  // 土曜 10:00〜16:30
-  };
+    d.setDate(d.getDate() + 1);
+  }
+}
+
+// ★全曜日の営業時間を 11:00〜19:00 に変更（19:30はなし）
+const WEEKLY_HOURS = {
+  0: { start: 11, end: 19 }, // 日曜
+  1: { start: 11, end: 19 }, // 月曜
+  2: { start: 11, end: 19 }, // 火曜（今後スキップされる）
+  3: { start: 11, end: 19 }, // 水曜
+  4: { start: 11, end: 19 }, // 木曜
+  5: { start: 11, end: 19 }, // 金曜
+  6: { start: 11, end: 19 }  // 土曜
+};
 
 // 指定曜日の12:00〜の休憩帯を除外（上限を含む）
 function isBlockedTime(weekday, h, m) {
@@ -1413,7 +1400,7 @@ function initPicker(baseId, dateDays = 120) {
 }
 
   // 3つ分を初期化
-  ['date1','date2','date3'].forEach(id => initPicker(id, 120));
+  ['date1','date2'].forEach(id => initPicker(id, 120));
 
         function selectSymptom(button, treatmentId) {
             // 選択された日時をリセット
@@ -1754,8 +1741,7 @@ function initPicker(baseId, dateDays = 120) {
                 irradiationsCount: irradiationsCount,
                 dates: [
                     document.getElementById('date1').value,
-                    document.getElementById('date2').value,
-                    document.getElementById('date3').value
+                    document.getElementById('date2').value
                 ],
                 message: document.getElementById('message').value.trim()
             };
@@ -1773,7 +1759,7 @@ function initPicker(baseId, dateDays = 120) {
             }
 
             // メッセージ部分を条件付きで作成
-            let messageText = `【予約フォーム】\n《ご性別》\n⇒${formData.visitCount}\n《メニュー》\n⇒${formData.selectedSymptom}\n\n【希望日時】\n《第一希望日》\n⇒${formatDate(formData.dates[0])}\n\n《第二希望日》\n⇒${formatDate(formData.dates[1])}\n\n《第三希望日》\n⇒${formatDate(formData.dates[2])}`;
+            let messageText = `【予約フォーム】\n《ご性別》\n⇒${formData.visitCount}\n《メニュー》\n⇒${formData.selectedSymptom}\n\n【希望日時】\n《第一希望日》\n⇒${formatDate(formData.dates[0])}\n\n《第二希望日》\n⇒${formatDate(formData.dates[1])}`;
             if (formData.message) {
                 messageText += `\n\n《メッセージ》\n⇒${formData.message}`;
             }
