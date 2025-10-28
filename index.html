@@ -800,9 +800,11 @@
   opacity: 0.5;
   pointer-events: none; /* クリック無効にしておく（選べない） */
 }
+
+/* menuLabel を常時表示（もしどこかで消されても上書き） */
+#menuLabel { display: block !important; visibility: visible !important; }
     </style>
 </head>
-
 
 <body>
     <div class="container">
@@ -1138,6 +1140,31 @@
             '【女性新規トライアルメニュー】'
         ];
 
+// ---- 日時ブロックの表示/非表示をまとめて切り替える ----
+function setDatetimeVisibility(show) {
+  const wrap1 = document.querySelector('#placeholder1')?.closest('.datetime-wrapper');
+  const wrap2 = document.querySelector('#placeholder2')?.closest('.datetime-wrapper');
+
+  // ラベルは「各 datetime-wrapper の直前の要素」を想定
+  const label1 = wrap1 ? wrap1.previousElementSibling : null; // 「希望日時」
+  const label2 = wrap2 ? wrap2.previousElementSibling : null; // 「第二希望日時」
+
+  [wrap1, wrap2, label1, label2].forEach(el => {
+    if (!el) return;
+    el.style.display = show ? '' : 'none';
+  });
+}
+
+// 初期状態：日時ブロックは非表示、menuLabelは確実に表示
+document.addEventListener('DOMContentLoaded', () => {
+  setDatetimeVisibility(false);
+  const menuLabel = document.getElementById('menuLabel');
+  if (menuLabel) {
+    menuLabel.style.display = '';
+    menuLabel.classList?.remove('hidden');
+  }
+});
+
         // ボタンを取得し非表示にする
         const menuButtons = document.querySelectorAll('#menuSections button');
         menuButtons.forEach((button, index) => {
@@ -1216,21 +1243,24 @@ function updateDisplayInfo() {
             button.addEventListener('click', updateDisplayInfo);
         });
 
+// 既存の ".symptoms button" 用 click リスナーをこのブロックに置き換え
+document.querySelectorAll('.symptoms button').forEach(button => {
+  button.addEventListener('click', () => {
+    // 選択状態の判定：active/selected クラス or selectedSymptom 配列の長さをざっくり見る
+    const hasAnySelection =
+      document.querySelector('.symptoms button.active, .symptoms button.selected') ||
+      (Array.isArray(selectedSymptom) && selectedSymptom.length > 0);
 
-        // 日付セルのクリックイベントで希望日時を更新
-        document.querySelectorAll('.symptoms button').forEach(button => {
-            button.addEventListener('click', () => {
-                const calendarContainer = document.querySelector('.calendar-container');
+    // 日時ブロックの表示/非表示
+    setDatetimeVisibility(!!hasAnySelection);
 
-                // 選択されたメニューがあればカレンダーを表示
-                if (document.querySelectorAll('.symptoms button.active').length > 0) {
-                    calendarContainer.style.display = 'block';
-                } else {
-                    // 選択が解除された場合、カレンダーを非表示
-                    calendarContainer.style.display = 'none';
-                }
-            });
-        });
+    // （既存挙動）カレンダー表示/非表示も維持
+    const calendarContainer = document.querySelector('.calendar-container');
+    if (calendarContainer) {
+      calendarContainer.style.display = hasAnySelection ? 'block' : 'none';
+    }
+  });
+});
 
         // 初期状態でカレンダーを非表示にする
         document.addEventListener('DOMContentLoaded', () => {
@@ -1392,6 +1422,7 @@ function initPicker(baseId, dateDays = 120) {
 
 // 3つ分を初期化
 ['date1','date2'].forEach(id => initPicker(id, 120));
+
 
         function selectSymptom(button, treatmentId) {
             // 選択された日時をリセット
