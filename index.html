@@ -1908,7 +1908,7 @@ function submitForm() {
   // メッセージ作成：第二希望日は入力があるときだけ追加
   let messageText =
     `【予約フォーム】\n` +
-    `《ご性別》\n⇒${formData.visitCount}\n` +
+    `《性別》\n⇒${formData.visitCount}\n` +
     `《メニュー》\n${formData.selectedSymptom}\n\n` + // ←ここも改行位置を自然に
     `【希望日時】\n` +
     `《第一希望日》\n⇒${formatDate(formData.dates[0])}`;
